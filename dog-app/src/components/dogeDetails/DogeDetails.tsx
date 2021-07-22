@@ -1,13 +1,14 @@
 import React, { useCallback, useMemo, useState } from "react";
 
 interface DogeProps {
+  id: String;
   image: any;
   name: String;
   onBark?: React.MouseEventHandler<HTMLButtonElement>;
   hasScold?: Boolean;
 }
 
-function DogeDetails({ image, name, onBark, hasScold }: DogeProps) {
+function DogeDetails({ id, image, name, onBark, hasScold }: DogeProps) {
   const [scoldCounter, setScold] = useState(0);
 
   const handleScoldClick = useCallback(() => {
@@ -18,7 +19,11 @@ function DogeDetails({ image, name, onBark, hasScold }: DogeProps) {
     if (hasScold) {
       return (
         <>
-          <button className="button small" onClick={handleScoldClick}>
+          <button
+            id={`${id}-scold`}
+            className="button small"
+            onClick={handleScoldClick}
+          >
             Scold!
           </button>
 
@@ -28,29 +33,27 @@ function DogeDetails({ image, name, onBark, hasScold }: DogeProps) {
     }
 
     return null;
-  }, [scoldCounter, hasScold, handleScoldClick]);
+  }, [scoldCounter, hasScold, handleScoldClick, id]);
 
   const renderBarkButton = useMemo(() => {
     if (onBark != null) {
       return (
-        <button className="button small" onClick={onBark}>
+        <button id={`${id}-bark`} className="button small" onClick={onBark}>
           Bark
         </button>
       );
     }
 
     return null;
-  }, [onBark]);
+  }, [onBark, id]);
 
   return (
-    <>
-      <div className="exercises-container">
-        <img src={image} className="doge-image" alt="logo" />
-        <span className="small">{name}</span>
-        {renderBarkButton}
-        {renderScoldButton}
-      </div>
-    </>
+    <div id={id} className="exercises-container wide">
+      <img src={image} className="doge-image" alt="logo" />
+      <span className="small">{name}</span>
+      {renderBarkButton}
+      {renderScoldButton}
+    </div>
   );
 }
 

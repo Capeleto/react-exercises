@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "./BeerForm.css";
 
 interface FormProps {
   id: string;
@@ -23,7 +22,7 @@ function CreateBeerForm({ id }: FormProps) {
   }
 
   return (
-    <>
+    <div className="exercises-container wide">
       <form id={id} className="form-container">
         Beer name:
         <input
@@ -65,7 +64,7 @@ function CreateBeerForm({ id }: FormProps) {
           Log This!
         </button>
       </form>
-    </>
+    </div>
   );
 }
 

@@ -1,14 +1,17 @@
 import React from "react";
-import "./App.css";
 import DogeDetails from "./components/dogeDetails/DogeDetails";
 import doge from "./components/dogeDetails/doge.jpg";
 import CreateBeerForm from "./components/beerForm/CreateBeerForm";
+import CreateBeerFormik from "./components/beerFormik/CreateBeerFormik";
+
+import "./App.css";
+import "./components/BeerForm.css";
 
 interface ChildrenInterface {
   children: React.ReactNode;
 }
 
-function Row({ children }: ChildrenInterface) {
+export function Row({ children }: ChildrenInterface) {
   return <div className="inside-container">{children}</div>;
 }
 
@@ -29,8 +32,9 @@ function App() {
             >
               Doge Alert
             </button>
-            <DogeDetails name="Dogecoin" image={doge} />
+            <DogeDetails id="dogedetails1" name="Dogecoin" image={doge} />
             <DogeDetails
+              id="dogedetails2"
               name="Dogecoin 2"
               image={doge}
               onBark={() => alert("Woof! Woof!")}
@@ -39,10 +43,23 @@ function App() {
           <Row>
             <span className="wide">EXERCISE 4</span>
             <span className="wide">EXERCISE 5</span>
+            <span className="wide">EXERCISE 6</span>
           </Row>
           <Row>
-            <DogeDetails name="Dogecoin 2" image={doge} hasScold />
+            <DogeDetails
+              id="dogedetails3"
+              name="Dogecoin 2"
+              image={doge}
+              hasScold
+            />
             <CreateBeerForm id="form1" />
+            <CreateBeerFormik id="formik1" />
+          </Row>
+          <Row>
+            <span className="wide">EXERCISE 7</span>
+          </Row>
+          <Row>
+            <CreateBeerFormik id="formik2" emptyValidation />
           </Row>
         </div>
       </header>

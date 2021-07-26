@@ -26,10 +26,7 @@ function App() {
             <span className="wide">EXERCISE 3</span>
           </Row>
           <Row>
-            <button
-              className="button wide narrow"
-              onClick={() => alert("WOW SUCH DOGO")}
-            >
+            <button className="button wide narrow" onClick={() => alert("WOW SUCH DOGO")}>
               Doge Alert
             </button>
             <DogeDetails id="dogedetails1" name="Dogecoin" image={doge} />
@@ -46,20 +43,19 @@ function App() {
             <span className="wide">EXERCISE 6</span>
           </Row>
           <Row>
-            <DogeDetails
-              id="dogedetails3"
-              name="Dogecoin 2"
-              image={doge}
-              hasScold
-            />
+            <DogeDetails id="dogedetails3" name="Dogecoin 2" image={doge} hasScold />
             <CreateBeerForm id="form1" />
             <CreateBeerFormik id="formik1" />
           </Row>
           <Row>
             <span className="wide">EXERCISE 7</span>
+            <span className="wide">EXERCISE 8</span>
+            <span className="wide">EXERCISE 8 v2</span>
           </Row>
           <Row>
             <CreateBeerFormik id="formik2" emptyValidation />
+            <DogeDetails id="dogedetails3" name="Dogecoin 2" image={doge} useMaterial hasScold />
+            <CreateBeerFormik id="formik2" emptyValidation useMaterial />
           </Row>
         </div>
       </header>

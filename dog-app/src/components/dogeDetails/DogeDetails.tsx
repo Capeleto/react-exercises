@@ -1,14 +1,16 @@
+import { Button, Typography, Card } from "@material-ui/core";
 import React, { useCallback, useMemo, useState } from "react";
 
 interface DogeProps {
-  id: String;
+  id: string;
   image: any;
-  name: String;
+  name: string;
   onBark?: React.MouseEventHandler<HTMLButtonElement>;
-  hasScold?: Boolean;
+  hasScold?: boolean;
+  useMaterial?: boolean;
 }
 
-function DogeDetails({ id, image, name, onBark, hasScold }: DogeProps) {
+function DogeDetails({ id, image, name, onBark, hasScold, useMaterial }: DogeProps) {
   const [scoldCounter, setScold] = useState(0);
 
   const handleScoldClick = useCallback(() => {
@@ -17,13 +19,27 @@ function DogeDetails({ id, image, name, onBark, hasScold }: DogeProps) {
 
   const renderScoldButton = useMemo(() => {
     if (hasScold) {
+      if (useMaterial) {
+        return (
+          <>
+            <Button
+              id={`${id}-scold`}
+              className="button small"
+              onClick={handleScoldClick}
+              color="primary"
+              variant="contained"
+            >
+              Scold!
+            </Button>
+
+            <Typography>{scoldCounter}</Typography>
+          </>
+        );
+      }
+
       return (
         <>
-          <button
-            id={`${id}-scold`}
-            className="button small"
-            onClick={handleScoldClick}
-          >
+          <button id={`${id}-scold`} className="button small" onClick={handleScoldClick}>
             Scold!
           </button>
 
@@ -33,10 +49,24 @@ function DogeDetails({ id, image, name, onBark, hasScold }: DogeProps) {
     }
 
     return null;
-  }, [scoldCounter, hasScold, handleScoldClick, id]);
+  }, [scoldCounter, hasScold, handleScoldClick, id, useMaterial]);
 
   const renderBarkButton = useMemo(() => {
     if (onBark != null) {
+      if (useMaterial) {
+        return (
+          <Button
+            id={`${id}-bark`}
+            className="button small"
+            onClick={onBark}
+            color="primary"
+            variant="contained"
+          >
+            Bark
+          </Button>
+        );
+      }
+
       return (
         <button id={`${id}-bark`} className="button small" onClick={onBark}>
           Bark
@@ -45,7 +75,18 @@ function DogeDetails({ id, image, name, onBark, hasScold }: DogeProps) {
     }
 
     return null;
-  }, [onBark, id]);
+  }, [onBark, id, useMaterial]);
+
+  if (useMaterial) {
+    return (
+      <Card id={id} className="exercises-container wide">
+        <img src={image} className="doge-image" alt="logo" />
+        <Typography className="small">{name}</Typography>
+        {renderBarkButton}
+        {renderScoldButton}
+      </Card>
+    );
+  }
 
   return (
     <div id={id} className="exercises-container wide">

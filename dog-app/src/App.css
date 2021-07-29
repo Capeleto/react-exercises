@@ -63,4 +63,19 @@
 .scroll {
   height: 400px;
   overflow: auto;
+  padding-top: 85px;
+}
+
+.filter {
+  display: flex;
+  flex-direction: column;
+}
+
+.radio-group {
+  flex-direction: row !important;
+  justify-content: space-evenly;
+}
+
+.radios {
+  width: 100px;
 }

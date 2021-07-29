@@ -5,6 +5,7 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import DogeDetails from "../dogeDetails/DogeDetails";
+import DogeFilter from "./DogFilter";
 
 function fetchList(useAxios) {
   if (useAxios) {
@@ -38,18 +39,19 @@ function listViewRenderer(name, breed, image, onClick) {
 
 function DogeList({ id, useAxios = false, onClick }) {
   const [data, setData] = useState(null);
+  const [filteredData, setFilteredData] = useState(null);
   const [dataImages, setDataImages] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetchList(useAxios)
       .then((response) => response.json())
-      .then(({ message }) => setData(message));
+      .then(({ message }) => setData(Object.keys(message)));
   }, [useAxios]);
 
   useEffect(() => {
     if (data != null) {
-      const promises = Object.keys(data).map((key) => fetchImage(key));
+      const promises = data.map((key) => fetchImage(key));
 
       Promise.all(promises).then(setDataImages);
     }
@@ -63,7 +65,9 @@ function DogeList({ id, useAxios = false, onClick }) {
 
   const listView = useMemo(() => {
     if (data && dataImages) {
-      return Object.keys(data).map((key) => {
+      const dataArray = filteredData || data;
+
+      return dataArray.map((key) => {
         const { message: imageURL } = dataImages.find((element) => element.name === key);
 
         return listViewRenderer(key, data[key], imageURL, onClick);
@@ -71,15 +75,22 @@ function DogeList({ id, useAxios = false, onClick }) {
     }
 
     return null;
-  }, [data, dataImages, onClick]);
+  }, [data, dataImages, onClick, filteredData]);
 
   if (loading) {
     return <CircularProgress color="primary" />;
   }
 
+  function handleChangeFilter(newList) {
+    setFilteredData(newList);
+  }
+
   return (
-    <div id={id} className="exercises-container huge scroll">
-      <List component="div">{listView}</List>
+    <div className="filter">
+      <DogeFilter data={data} onChange={handleChangeFilter} />
+      <div id={id} className="exercises-container huge scroll">
+        <List component="div">{listView}</List>
+      </div>
     </div>
   );
 }

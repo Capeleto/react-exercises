@@ -81,7 +81,7 @@ function DogeDetails({ id, image, name, onBark, hasScold, useMaterial }: DogePro
     return (
       <Card id={id} className="exercises-container wide">
         <img src={image} className="doge-image" alt="logo" />
-        <Typography className="small">{name}</Typography>
+        <Typography className="small capitalize">{name}</Typography>
         {renderBarkButton}
         {renderScoldButton}
       </Card>

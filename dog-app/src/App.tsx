@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import DogeDetails from "./components/dogeDetails/DogeDetails";
 import doge from "./components/dogeDetails/doge.jpg";
 import CreateBeerForm from "./components/beerForm/CreateBeerForm";
@@ -6,6 +6,7 @@ import CreateBeerFormik from "./components/beerFormik/CreateBeerFormik";
 
 import "./App.css";
 import "./components/BeerForm.css";
+import DogeList from "./components/dogList/DogList";
 
 interface ChildrenInterface {
   children: React.ReactNode;
@@ -15,7 +16,18 @@ export function Row({ children }: ChildrenInterface) {
   return <div className="inside-container">{children}</div>;
 }
 
+interface Values {
+  name: string;
+  image: string;
+}
+
 function App() {
+  const [values, setValues] = useState<Values>({ name: "", image: "" });
+
+  function setDogeDetailsValues(name: string, image: string) {
+    setValues({ name, image });
+  }
+
   return (
     <div className="App">
       <header className="App-header">
@@ -56,6 +68,18 @@ function App() {
             <CreateBeerFormik id="formik2" emptyValidation />
             <DogeDetails id="dogedetails3" name="Dogecoin 2" image={doge} useMaterial hasScold />
             <CreateBeerFormik id="formik2" emptyValidation useMaterial />
+          </Row>
+          <Row>
+            <span className="wide">EXERCISE 10/11/12/13</span>
+          </Row>
+          <Row>
+            <DogeList id="dogeList" onClick={setDogeDetailsValues} />
+          </Row>
+          <Row>
+            <span className="wide">EXERCISE 14</span>
+          </Row>
+          <Row>
+            <DogeDetails id="dogedetails-list" name={values.name || "doge list"} image={values.image || doge} />
           </Row>
         </div>
       </header>

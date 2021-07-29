@@ -51,3 +51,16 @@
 .wide {
   width: 160px;
 }
+
+.huge {
+  width: 100%;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+.scroll {
+  height: 400px;
+  overflow: auto;
+}

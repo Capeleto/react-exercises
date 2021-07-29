@@ -1,6 +1,6 @@
 import React, { ChangeEventHandler } from "react";
 import { Formik, Form, Field } from "formik";
-import { Button, Card, MenuItem, TextField, Select, Checkbox } from "@material-ui/core";
+import { Button, Card, MenuItem, TextField, Select, Checkbox, Typography } from "@material-ui/core";
 
 interface FormProps {
   id: string;
@@ -16,14 +16,17 @@ interface FormikValues {
 }
 
 function CreateBeerFormik({ id, emptyValidation, useMaterial }: FormProps) {
-  function handleSubmit(values: any, actions: any) {
+  function handleSubmit(values: any, actions?: any, setSubmitting?: any) {
     const { name, type, hasCorn, ingredients } = values;
 
     console.log(
       `Name: ${name} \nType: ${type} \nHas corn: ${hasCorn} \nIngredients: ${ingredients}`
     );
 
-    actions.setSubmitting(false);
+    actions?.setSubmitting(false);
+    if (setSubmitting) {
+      setSubmitting(false);
+    }
   }
 
   const initialValues: FormikValues = {
@@ -43,12 +46,12 @@ function CreateBeerFormik({ id, emptyValidation, useMaterial }: FormProps) {
     return { isButtonEnabled: true };
   }
 
-  function renderButtonSubmit(errors: any, isSubmitting: boolean) {
+  function renderButtonSubmit(errors: any, isSubmitting: boolean, values: any, setSubmitting: any) {
     if (useMaterial) {
       return (
         <Button
           type="submit"
-          // className="button small"
+          onClick={() => handleSubmit(values, null, setSubmitting)}
           disabled={!errors.isButtonEnabled || isSubmitting}
         >
           Log Formik!
@@ -73,8 +76,7 @@ function CreateBeerFormik({ id, emptyValidation, useMaterial }: FormProps) {
         values,
         errors,
         isSubmitting,
-        handleChange,
-        touched,
+        setSubmitting,
       }: {
         errors: any;
         isSubmitting: boolean;
@@ -83,40 +85,27 @@ function CreateBeerFormik({ id, emptyValidation, useMaterial }: FormProps) {
           HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
         >;
         touched: any;
+        setSubmitting: any;
       }) => {
-        const buttonSubmit = renderButtonSubmit(errors, isSubmitting);
+        const buttonSubmit = renderButtonSubmit(errors, isSubmitting, values, setSubmitting);
 
         if (useMaterial) {
           return (
             <Card>
               <Form className="exercises-container wide">
-                <TextField
-                  id="name"
-                  name="name"
-                  label="Beer name:"
-                  type="text"
-                  value={values.email}
-                  onChange={handleChange}
-                  error={touched.email && Boolean(errors.email)}
-                  helperText={touched.email && errors.email}
-                  fullWidth
-                />
-                {/* <Select id="type" name="type" label="Beer Type:" onChange={}>
+                <Typography>Beer name:</Typography>
+                <Field id="name" name="name" type="text" />
+                <Typography>Beer Type:</Typography>
+                <Field id="type" name="type" as={Select}>
                   <MenuItem value="None Selected">None Selected</MenuItem>
                   <MenuItem value="Beer 1">Beer 1</MenuItem>
                   <MenuItem value="Beer 2">Beer 2</MenuItem>
                   <MenuItem value="Beer 3">Beer 3</MenuItem>
                   <MenuItem value="Other Beer">Other Beer</MenuItem>
-                </Select> */}
-                Has corn:
-                <Checkbox
-                  id="hasCorn"
-                  name="hasCorn"
-                  // type="checkbox"
-                  value={values.email}
-                  onChange={handleChange}
-                />
-                Ingredients:
+                </Field>
+                <Typography>Has corn:</Typography>
+                <Field id="hasCorn" name="hasCorn" type="checkbox" as={Checkbox} />
+                <Typography>Ingredients:</Typography>
                 <Field id="ingredients" as="textarea" name="ingredients" />
                 {buttonSubmit}
               </Form>

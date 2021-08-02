@@ -7,14 +7,6 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import DogeDetails from "../dogeDetails/DogeDetails";
 import DogeFilter from "./DogFilter";
 
-function fetchList(useAxios) {
-  if (useAxios) {
-    return null;
-  }
-
-  return fetch("https://dog.ceo/api/breeds/list/all");
-}
-
 function fetchImage(name) {
   return fetch(`https://dog.ceo/api/breed/${name}/images/random`)
     .then((response) => response.json())
@@ -24,12 +16,15 @@ function fetchImage(name) {
         name,
       };
     })
-    .catch(() => null);
+    .catch(() => Promise.resolve());
 }
 
 function listViewRenderer(name, breed, image, onClick) {
   return (
-    <ListItem className="exercises-container" onClick={() => onClick(name, image)}>
+    <ListItem
+      className="exercises-container"
+      onClick={() => onClick(name, image)}
+    >
       <DogeDetails image={image} name={name} hasScold />
       {/* <img src={image} alt={name} className="doge-image" />
       <ListItemText className="capitalize">{name}</ListItemText> */}
@@ -37,17 +32,25 @@ function listViewRenderer(name, breed, image, onClick) {
   );
 }
 
-function DogeList({ id, useAxios = false, onClick }) {
+function DogeList({ id, useAxios = false, onClick, onSearch }) {
   const [data, setData] = useState(null);
   const [filteredData, setFilteredData] = useState(null);
   const [dataImages, setDataImages] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  function fetchList() {
+    if (useAxios) {
+      return Promise.resolve();
+    }
+
+    return onSearch || fetch("https://dog.ceo/api/breeds/list/all");
+  }
+
   useEffect(() => {
-    fetchList(useAxios)
+    fetchList()
       .then((response) => response.json())
       .then(({ message }) => setData(Object.keys(message)));
-  }, [useAxios]);
+  }, []);
 
   useEffect(() => {
     if (data != null) {
@@ -68,7 +71,9 @@ function DogeList({ id, useAxios = false, onClick }) {
       const dataArray = filteredData || data;
 
       return dataArray.map((key) => {
-        const { message: imageURL } = dataImages.find((element) => element.name === key);
+        const { message: imageURL } = dataImages.find(
+          (element) => element.name === key
+        );
 
         return listViewRenderer(key, data[key], imageURL, onClick);
       });

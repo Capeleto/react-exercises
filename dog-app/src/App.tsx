@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import DogeDetails from "./components/dogeDetails/DogeDetails";
 import doge from "./components/dogeDetails/doge.jpg";
 import CreateBeerForm from "./components/beerForm/CreateBeerForm";
 import CreateBeerFormik from "./components/beerFormik/CreateBeerFormik";
+
+import { createEvent, createStore } from "effector";
+import { useStore } from "effector-react";
 
 import "./App.css";
 import "./components/BeerForm.css";
@@ -21,8 +24,19 @@ interface Values {
   image: string;
 }
 
+const initialState: Values = {
+  name: "",
+  image: "",
+};
+
+export const setValues = createEvent<object>("setValues");
+export const store = createStore<Values>(initialState).on(
+  setValues,
+  (state, values) => ({ ...state, ...values })
+);
+
 function App() {
-  const [values, setValues] = useState<Values>({ name: "", image: "" });
+  const { name, image } = useStore(store);
 
   function setDogeDetailsValues(name: string, image: string) {
     setValues({ name, image });
@@ -38,7 +52,10 @@ function App() {
             <span className="wide">EXERCISE 3</span>
           </Row>
           <Row>
-            <button className="button wide narrow" onClick={() => alert("WOW SUCH DOGO")}>
+            <button
+              className="button wide narrow"
+              onClick={() => alert("WOW SUCH DOGO")}
+            >
               Doge Alert
             </button>
             <DogeDetails id="dogedetails1" name="Dogecoin" image={doge} />
@@ -55,7 +72,12 @@ function App() {
             <span className="wide">EXERCISE 6</span>
           </Row>
           <Row>
-            <DogeDetails id="dogedetails3" name="Dogecoin 2" image={doge} hasScold />
+            <DogeDetails
+              id="dogedetails3"
+              name="Dogecoin 2"
+              image={doge}
+              hasScold
+            />
             <CreateBeerForm id="form1" />
             <CreateBeerFormik id="formik1" />
           </Row>
@@ -66,20 +88,34 @@ function App() {
           </Row>
           <Row>
             <CreateBeerFormik id="formik2" emptyValidation />
-            <DogeDetails id="dogedetails3" name="Dogecoin 2" image={doge} useMaterial hasScold />
+            <DogeDetails
+              id="dogedetails3"
+              name="Dogecoin 2"
+              image={doge}
+              useMaterial
+              hasScold
+            />
             <CreateBeerFormik id="formik2" emptyValidation useMaterial />
           </Row>
           <Row>
             <span className="wide">EXERCISE 10/11/12/13</span>
           </Row>
           <Row>
-            <DogeList id="dogeList" onClick={setDogeDetailsValues} />
+            <DogeList
+              id="dogeList"
+              onClick={setDogeDetailsValues}
+              onSearch={null}
+            />
           </Row>
           <Row>
             <span className="wide">EXERCISE 14</span>
           </Row>
           <Row>
-            <DogeDetails id="dogedetails-list" name={values.name || "doge list"} image={values.image || doge} />
+            <DogeDetails
+              id="dogedetails-list"
+              name={name || "doge list"}
+              image={image || doge}
+            />
           </Row>
         </div>
       </header>

@@ -1,0 +1,220 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render component with multiple props should render all radio buttons 1`] = `
+<ForwardRef(RadioGroup)
+  aria-label="dogeFilter"
+  className="radio-group"
+  id="dogeFilter"
+  name="dogeFilter"
+  onChange={[Function]}
+>
+  <WithStyles(ForwardRef(FormControlLabel))
+    className="radios"
+    control={<WithStyles(ForwardRef(Radio)) />}
+    id="A"
+    key="A"
+    label="A 4"
+    value="A"
+  />
+  <WithStyles(ForwardRef(FormControlLabel))
+    className="radios"
+    control={<WithStyles(ForwardRef(Radio)) />}
+    id="B"
+    key="B"
+    label="B 0"
+    value="B"
+  />
+  <WithStyles(ForwardRef(FormControlLabel))
+    className="radios"
+    control={<WithStyles(ForwardRef(Radio)) />}
+    id="C"
+    key="C"
+    label="C 0"
+    value="C"
+  />
+  <WithStyles(ForwardRef(FormControlLabel))
+    className="radios"
+    control={<WithStyles(ForwardRef(Radio)) />}
+    id="D"
+    key="D"
+    label="D 0"
+    value="D"
+  />
+  <WithStyles(ForwardRef(FormControlLabel))
+    className="radios"
+    control={<WithStyles(ForwardRef(Radio)) />}
+    id="E"
+    key="E"
+    label="E 0"
+    value="E"
+  />
+  <WithStyles(ForwardRef(FormControlLabel))
+    className="radios"
+    control={<WithStyles(ForwardRef(Radio)) />}
+    id="F"
+    key="F"
+    label="F 0"
+    value="F"
+  />
+  <WithStyles(ForwardRef(FormControlLabel))
+    className="radios"
+    control={<WithStyles(ForwardRef(Radio)) />}
+    id="G"
+    key="G"
+    label="G 0"
+    value="G"
+  />
+  <WithStyles(ForwardRef(FormControlLabel))
+    className="radios"
+    control={<WithStyles(ForwardRef(Radio)) />}
+    id="H"
+    key="H"
+    label="H 0"
+    value="H"
+  />
+  <WithStyles(ForwardRef(FormControlLabel))
+    className="radios"
+    control={<WithStyles(ForwardRef(Radio)) />}
+    id="I"
+    key="I"
+    label="I 0"
+    value="I"
+  />
+  <WithStyles(ForwardRef(FormControlLabel))
+    className="radios"
+    control={<WithStyles(ForwardRef(Radio)) />}
+    id="J"
+    key="J"
+    label="J 0"
+    value="J"
+  />
+  <WithStyles(ForwardRef(FormControlLabel))
+    className="radios"
+    control={<WithStyles(ForwardRef(Radio)) />}
+    id="K"
+    key="K"
+    label="K 0"
+    value="K"
+  />
+  <WithStyles(ForwardRef(FormControlLabel))
+    className="radios"
+    control={<WithStyles(ForwardRef(Radio)) />}
+    id="L"
+    key="L"
+    label="L 0"
+    value="L"
+  />
+  <WithStyles(ForwardRef(FormControlLabel))
+    className="radios"
+    control={<WithStyles(ForwardRef(Radio)) />}
+    id="M"
+    key="M"
+    label="M 0"
+    value="M"
+  />
+  <WithStyles(ForwardRef(FormControlLabel))
+    className="radios"
+    control={<WithStyles(ForwardRef(Radio)) />}
+    id="N"
+    key="N"
+    label="N 0"
+    value="N"
+  />
+  <WithStyles(ForwardRef(FormControlLabel))
+    className="radios"
+    control={<WithStyles(ForwardRef(Radio)) />}
+    id="O"
+    key="O"
+    label="O 0"
+    value="O"
+  />
+  <WithStyles(ForwardRef(FormControlLabel))
+    className="radios"
+    control={<WithStyles(ForwardRef(Radio)) />}
+    id="P"
+    key="P"
+    label="P 0"
+    value="P"
+  />
+  <WithStyles(ForwardRef(FormControlLabel))
+    className="radios"
+    control={<WithStyles(ForwardRef(Radio)) />}
+    id="Q"
+    key="Q"
+    label="Q 0"
+    value="Q"
+  />
+  <WithStyles(ForwardRef(FormControlLabel))
+    className="radios"
+    control={<WithStyles(ForwardRef(Radio)) />}
+    id="R"
+    key="R"
+    label="R 0"
+    value="R"
+  />
+  <WithStyles(ForwardRef(FormControlLabel))
+    className="radios"
+    control={<WithStyles(ForwardRef(Radio)) />}
+    id="S"
+    key="S"
+    label="S 0"
+    value="S"
+  />
+  <WithStyles(ForwardRef(FormControlLabel))
+    className="radios"
+    control={<WithStyles(ForwardRef(Radio)) />}
+    id="T"
+    key="T"
+    label="T 0"
+    value="T"
+  />
+  <WithStyles(ForwardRef(FormControlLabel))
+    className="radios"
+    control={<WithStyles(ForwardRef(Radio)) />}
+    id="U"
+    key="U"
+    label="U 0"
+    value="U"
+  />
+  <WithStyles(ForwardRef(FormControlLabel))
+    className="radios"
+    control={<WithStyles(ForwardRef(Radio)) />}
+    id="V"
+    key="V"
+    label="V 0"
+    value="V"
+  />
+  <WithStyles(ForwardRef(FormControlLabel))
+    className="radios"
+    control={<WithStyles(ForwardRef(Radio)) />}
+    id="W"
+    key="W"
+    label="W 0"
+    value="W"
+  />
+  <WithStyles(ForwardRef(FormControlLabel))
+    className="radios"
+    control={<WithStyles(ForwardRef(Radio)) />}
+    id="X"
+    key="X"
+    label="X 0"
+    value="X"
+  />
+  <WithStyles(ForwardRef(FormControlLabel))
+    className="radios"
+    control={<WithStyles(ForwardRef(Radio)) />}
+    id="Y"
+    key="Y"
+    label="Y 0"
+    value="Y"
+  />
+  <WithStyles(ForwardRef(FormControlLabel))
+    className="radios"
+    control={<WithStyles(ForwardRef(Radio)) />}
+    id="Z"
+    key="Z"
+    label="Z 0"
+    value="Z"
+  />
+</ForwardRef(RadioGroup)>
+`;

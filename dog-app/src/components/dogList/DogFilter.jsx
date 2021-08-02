@@ -6,18 +6,21 @@ function DogeFilter({ data = [], value, onChange }) {
   const alphabet = alpha.map((x) => String.fromCharCode(x));
 
   const letterData = alphabet.reduce((accumulator, letter) => {
-    accumulator[letter] = data.filter((element) => element.toUpperCase().startsWith(letter));
+    accumulator[letter] = data.filter((element) =>
+      element.toUpperCase().startsWith(letter)
+    );
 
     return accumulator;
   }, {});
 
   function handleChange(_, letter) {
-    onChange(letterData[letter]);
+    return onChange(letterData[letter]);
   }
 
   return (
     <RadioGroup
       aria-label="dogeFilter"
+      id="dogeFilter"
       name="dogeFilter"
       value={value}
       onChange={handleChange}
@@ -25,6 +28,8 @@ function DogeFilter({ data = [], value, onChange }) {
     >
       {alphabet.map((letter) => (
         <FormControlLabel
+          key={letter}
+          id={letter}
           value={letter}
           control={<Radio />}
           label={`${letter} ${letterData[letter].length}`}
